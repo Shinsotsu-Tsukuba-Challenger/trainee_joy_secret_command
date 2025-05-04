@@ -1,0 +1,24 @@
+device: "/dev/input/js0"
+
+secret_commands:
+  - name: reboot
+    combo: [BACK, X]
+    action: "echo 'reboot now' && (echo ' ' | sudo -S /sbin/reboot)"
+  - name: shutdown
+    combo: [BACK, B]
+    action: "echo 'shutdown now' && (echo ' ' | sudo -S /sbin/poweroff)"
+  - name: ros2 daemon restart
+    combo: [Logicool, X]
+    action: "ros2 daemon stop && ros2 daemon start"
+  - name: ros2 kill all
+    combo: [Logicool, A]
+    action: 'ps aux | grep ros | grep -v grep | awk ''{ print "kill -9", $2 }'' | sh'
+  - name: trainee launch
+    combo: [Logicool, Y]
+    action: "env_ros2 ros2 launch trainee_launch trainee.launch.py &"
+  - name: trainee launch
+    combo: [Logicool, B]
+    action: "env_ros2 ros2 launch trainee_launch teleop_twist_joy_comfy.launch.xml &"
+  - name: debug
+    combo: [BACK, START]
+    action: "echo 'ready ok'"
